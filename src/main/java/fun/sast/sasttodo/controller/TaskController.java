@@ -16,23 +16,28 @@ public class TaskController {
 
     @GetMapping
     List<Task> getTaskList() {
-        // todo
-        return null;
+        List<Task> taskList = taskService.getTaskList();
+        return taskList;
     }
 
     @PostMapping
     void addTask(@RequestBody Task todo) {
-        // todo
+        taskService.addTask(todo);
     }
 
     @PutMapping
     void updateTask(@RequestBody Task todo) {
-        // todo
+        taskService.updateTask(todo);
     }
 
-    @DeleteMapping
-    void deleteTask(@RequestBody Task todo) {
-        // todo
+    @DeleteMapping("/{id}")
+    void deleteTask(@PathVariable Integer id) {
+        taskService.deleteTask(id);
+    }
+
+    @GetMapping({"/{id}"})
+    Task getTaskById(@PathVariable Integer id) {
+        return taskService.getTaskById(id);
     }
 
 
