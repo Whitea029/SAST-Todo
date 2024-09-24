@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fun.sast.sasttodo.user.mapper.UserMapper">
+
+    <select id="selectByStudent_id" resultType="fun.sast.sasttodo.user.pojo.vo.UserVO">
+        select id,student_id,password
+        from user
+        where student_id=#{student_id}
+    </select>
+
+    <insert id="insertUser">
+        insert into user(id,student_id,password)
+        values (
+                #{id},#{student_id},#{password}
+               )
+    </insert>
+
+    <update id="updateUser">
+        update user
+        <set>
+            password=#{password},
+        </set>
+        where student_id=#{student_id}
+    </update>
+
+    <delete id="deleteUser">
+        delete from user where student_id=#{student_id}
+    </delete>
+
+</mapper>
