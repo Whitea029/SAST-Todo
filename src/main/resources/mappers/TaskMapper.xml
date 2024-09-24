@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fun.sast.sasttodo.task.mapper.TaskMapper">
+
+    <select id="selectTask" resultType="fun.sast.sasttodo.task.pojo.vo.TaskVO">
+        select id,user_id,title,description,status,due_date,create_time,last_update_time
+        from task
+        order by create_time desc
+    </select>
+
+    <insert id="insertTask">
+        insert into task(id,user_id,title,description,status,due_date,create_time,last_update_time)
+        values (
+                #{id},#{user_id},#{title},#{description},#{status},#{due_date},#{create_time},#{last_update_time}
+               )
+    </insert>
+
+    <update id="updateTask">
+        update task
+        <set>
+            title=#{title},
+            description=#{description},
+            status=#{status},
+            due_date=#{due_date},
+            last_update_time=#{last_update_time}
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="deleteTask">
+        delete from task where id=#{id}
+    </delete>
+
+    <select id="detailById" resultType="fun.sast.sasttodo.task.pojo.vo.TaskVO">
+        select *
+        from task
+        where id=#{id}
+    </select>
+</mapper>
