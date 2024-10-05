@@ -1,11 +1,9 @@
 package fun.sast.sasttodo.controller;
 
+import fun.sast.sasttodo.entity.User;
 import fun.sast.sasttodo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -17,13 +15,24 @@ public class UserController {
 
     @PostMapping("register")
     String register(String username, String password) {
-        // todo
+
+        userService.register(username, password);
         return null;
     }
 
+    @PutMapping("update")
+    void update(User user) {
+        userService.update(user);
+    }
     @PostMapping("/login")
     void login(String username, String password) {
-        // todo
+
+        userService.login(username, password);
+    }
+
+    @DeleteMapping("delete")
+    void delete(User user) {
+        userService.deleteUser(user.getId());
     }
 
     @GetMapping
